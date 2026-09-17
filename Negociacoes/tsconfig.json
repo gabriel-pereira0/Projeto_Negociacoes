@@ -3,7 +3,8 @@
     "outDir": "dist/js",
     "target": "es2025",
     "rootDir": "./app",
-    "noEmitOnError": true
+    "noEmitOnError": true,
+    "noImplicitAny": true
   },
   "include": ["app/**/*"]
 }
