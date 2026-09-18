@@ -1,24 +1,13 @@
-export class Negociacao {
-  private _data: Date;
-  private _quantidade: number;
-  private _valor: number;
+import { Negociacao } from './negociacao.js';
 
-  constructor(data: Date, quantidade: number, valor: number) {
-    this._data = data;
-    this._quantidade = quantidade;
-    this._valor = valor;
+export class Negociacoes {
+  private _negociacoes: Array<Negociacao> = [];
+
+  adiciona(negocicao: Negociacao) {
+    this._negociacoes.push(negocicao);
   }
 
-  get data(): Date {
-    return this._data;
-  }
-  get quantidade(): number {
-    return this._quantidade;
-  }
-  get valor(): number {
-    return this._valor;
-  }
-  get volume(): number {
-    return this.quantidade * this.valor;
+  lista(): Array<Negociacao> {
+    return this._negociacoes;
   }
 }

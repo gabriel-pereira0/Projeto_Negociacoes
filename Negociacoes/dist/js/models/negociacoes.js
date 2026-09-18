@@ -1,22 +1,9 @@
-export class Negociacao {
-    _data;
-    _quantidade;
-    _valor;
-    constructor(data, quantidade, valor) {
-        this._data = data;
-        this._quantidade = quantidade;
-        this._valor = valor;
+export class Negociacoes {
+    _negociacoes = [];
+    adiciona(negocicao) {
+        this._negociacoes.push(negocicao);
     }
-    get data() {
-        return this._data;
-    }
-    get quantidade() {
-        return this._quantidade;
-    }
-    get valor() {
-        return this._valor;
-    }
-    get volume() {
-        return this.quantidade * this.valor;
+    lista() {
+        return this._negociacoes;
     }
 }
