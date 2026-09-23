@@ -1,12 +1,5 @@
-export class MensagemView {
-    element;
-    constructor(seletor) {
-        const element = document.querySelector(seletor);
-        if (!element) {
-            throw new Error(`Elemento "${seletor}" não encontrado!`);
-        }
-        this.element = element;
-    }
+import { View } from './view.js';
+export class MensagemView extends View {
     template(model) {
         return `
         <p class="alert alert-info">${model}</p>
@@ -14,6 +7,6 @@ export class MensagemView {
     }
     update(model) {
         const template = this.template(model);
-        this.element.innerHTML = template;
+        this.elemento.innerHTML = template;
     }
 }

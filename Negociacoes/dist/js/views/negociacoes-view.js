@@ -1,12 +1,5 @@
-export class NegociacoesView {
-    elemento;
-    constructor(seletor) {
-        const elemento = document.querySelector(seletor);
-        if (!elemento) {
-            throw new Error(`Elemento não encontrado: ${seletor}`);
-        }
-        this.elemento = elemento;
-    }
+import { View } from './view.js';
+export class NegociacoesView extends View {
     template(model) {
         return `
             <table class="table table-hover table-bordered">
