@@ -1,4 +1,6 @@
-export class View {
+import { Negociacoes } from '../models/negociacoes.js';
+
+export class View<T> {
   protected elemento: HTMLElement;
 
   constructor(seletor: string) {
@@ -8,5 +10,14 @@ export class View {
       throw new Error(`Elemento "${seletor}" não encontrado!`);
     }
     this.elemento = elemento;
+  }
+
+  template(model: T): string {
+    throw Error('Classe filha precisa implementar o método template!');
+  }
+
+  update(model: T): void {
+    const template = this.template(model);
+    this.elemento.innerHTML = template;
   }
 }
