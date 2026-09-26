@@ -20,7 +20,7 @@ export class NegociacaoController {
     this._negociacoesView.update(this._negociacoes);
   }
 
-  criaNegociacao(): Negociacao {
+  private criaNegociacao(): Negociacao {
     const [ano, mes, dia] = this._inputData.value.split('-').map(Number);
     const date = new Date(ano, mes - 1, dia);
     const quantidade = parseInt(this._inputQuantidade.value);
@@ -28,18 +28,22 @@ export class NegociacaoController {
     return new Negociacao(date, quantidade, valor);
   }
 
-  adiciona(): void {
+  public adiciona(): void {
     const negociacao = this.criaNegociacao();
     this._negociacoes.adiciona(negociacao);
-    this._negociacoesView.update(this._negociacoes);
-    this._mensagemView.update('Negociação adicionada com sucesso!');
+    this.atualizaView();
     this.limparFormulario();
   }
 
-  limparFormulario(): void {
+  private limparFormulario(): void {
     this._inputData.value = '';
     this._inputQuantidade.value = '';
     this._inputValor.value = '';
     this._inputData.focus();
+  }
+
+  private atualizaView(): void {
+    this._negociacoesView.update(this._negociacoes);
+    this._mensagemView.update('Negociação adicionada com sucesso!');
   }
 }
