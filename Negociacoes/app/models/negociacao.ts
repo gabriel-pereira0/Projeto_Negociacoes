@@ -1,3 +1,5 @@
+import { Negociacoes } from './negociacoes';
+
 export class Negociacao {
   constructor(
     private _data: Date,
@@ -12,5 +14,17 @@ export class Negociacao {
 
   get volume(): number {
     return this.quantidade * this.valor;
+  }
+
+  public static criaDe(
+    dataString: string,
+    quantidadeString: string,
+    valorString: string,
+  ): Negociacao {
+    const [ano, mes, dia] = dataString.split('-').map(Number);
+    const date = new Date(ano, mes - 1, dia);
+    const quantidade = parseInt(quantidadeString);
+    const valor = parseFloat(valorString);
+    return new Negociacao(date, quantidade, valor);
   }
 }

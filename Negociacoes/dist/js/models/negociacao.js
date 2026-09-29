@@ -14,4 +14,11 @@ export class Negociacao {
     get volume() {
         return this.quantidade * this.valor;
     }
+    static criaDe(dataString, quantidadeString, valorString) {
+        const [ano, mes, dia] = dataString.split('-').map(Number);
+        const date = new Date(ano, mes - 1, dia);
+        const quantidade = parseInt(quantidadeString);
+        const valor = parseFloat(valorString);
+        return new Negociacao(date, quantidade, valor);
+    }
 }
