@@ -8,7 +8,7 @@ export class NegociacaoController {
     _inputQuantidade;
     _inputValor;
     _negociacoes = new Negociacoes();
-    _negociacoesView = new NegociacoesView('#negociacoesView');
+    _negociacoesView = new NegociacoesView('#negociacoesView', true);
     _mensagemView = new MensagemView('#mensagemView');
     constructor() {
         this._inputData = document.querySelector('#data');
