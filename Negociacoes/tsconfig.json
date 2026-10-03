@@ -4,7 +4,8 @@
     "target": "es2025",
     "rootDir": "./app",
     "noEmitOnError": true,
-    "noImplicitAny": true
+    "noImplicitAny": true,
+    "removeComments": true
   },
   "include": ["app/**/*"]
 }
