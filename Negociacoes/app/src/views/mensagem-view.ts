@@ -1,9 +1,15 @@
+import { TipoMensagem } from '../enums/tipo-mensagem.js';
 import { View } from './view.js';
 
-export class MensagemView extends View<string> {
-  protected template(model: string): string {
+interface Mensagem {
+  texto: string;
+  tipo: TipoMensagem;
+}
+
+export class MensagemView extends View<Mensagem> {
+  protected template(model: Mensagem): string {
     return `
-        <p class="alert alert-info">${model}</p>
+      <p class="alert ${model.tipo}">${model.texto}</p>
     `;
   }
 }

@@ -1,4 +1,5 @@
 import { DiasDaSemana } from '../enums/dias-da-semana.js';
+import { TipoMensagem } from '../enums/tipo-mensagem.js';
 import { Negociacao } from '../models/negociacao.js';
 import { Negociacoes } from '../models/negociacoes.js';
 import { MensagemView } from '../views/mensagem-view.js';
@@ -19,7 +20,10 @@ export class NegociacaoController {
     adiciona() {
         const negociacao = Negociacao.criaDe(this._inputData.value, this._inputQuantidade.value, this._inputValor.value);
         if (!this.diaUtil(negociacao.data)) {
-            this._mensagemView.update('Apenas negociações realizadas em dias úteis são aceitas!');
+            this._mensagemView.update({
+                texto: 'Apenas negociações realizadas em dias úteis são aceitas!',
+                tipo: TipoMensagem.ERRO,
+            });
             return;
         }
         this._negociacoes.adiciona(negociacao);
@@ -38,6 +42,9 @@ export class NegociacaoController {
     }
     atualizaView() {
         this._negociacoesView.update(this._negociacoes);
-        this._mensagemView.update('Negociação adicionada com sucesso!');
+        this._mensagemView.update({
+            texto: 'Negociação adicionada com sucesso!',
+            tipo: TipoMensagem.SUCESSO,
+        });
     }
 }
