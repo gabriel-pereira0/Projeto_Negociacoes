@@ -1,12 +1,12 @@
 {
   "compilerOptions": {
-    "outDir": "dist/js",
+    "outDir": "app/dist/js",
     "target": "es2025",
-    "rootDir": "./app",
+    "rootDir": "./app/src",
     "noEmitOnError": true,
     "noImplicitAny": true,
     "removeComments": true,
     "strictNullChecks": true
   },
-  "include": ["app/**/*"]
+  "include": ["app/src/**/*"]
 }
