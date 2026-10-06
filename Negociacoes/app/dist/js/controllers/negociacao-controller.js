@@ -17,7 +17,7 @@ export class NegociacaoController {
     _inputQuantidade;
     _inputValor;
     _negociacoes = new Negociacoes();
-    _negociacoesView = new NegociacoesView('#negociacoesView', true);
+    _negociacoesView = new NegociacoesView('#negociacoesView');
     _mensagemView = new MensagemView('#mensagemView');
     constructor() {
         this._inputData = document.querySelector('#data');
@@ -57,6 +57,6 @@ export class NegociacaoController {
     }
 }
 __decorate([
-    inspect(),
+    inspect,
     logarTempoDeExecucao(true)
 ], NegociacaoController.prototype, "adiciona", null);
