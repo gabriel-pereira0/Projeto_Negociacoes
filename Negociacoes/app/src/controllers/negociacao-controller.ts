@@ -1,3 +1,4 @@
+import { inspect } from '../decorators/inspect.js';
 import { logarTempoDeExecucao } from '../decorators/logar-tempo-de-execucao.js';
 import { DiasDaSemana } from '../enums/dias-da-semana.js';
 import { TipoMensagem } from '../enums/tipo-mensagem.js';
@@ -22,7 +23,9 @@ export class NegociacaoController {
     this._inputValor = document.querySelector('#valor') as HTMLInputElement;
     this._negociacoesView.update(this._negociacoes);
   }
-  @logarTempoDeExecucao()
+
+  @inspect()
+  @logarTempoDeExecucao(true)
   public adiciona(): void {
     const negociacao = Negociacao.criaDe(
       this._inputData.value,

@@ -1,4 +1,4 @@
-export function logarTempoDeExecucao() {
+export function logarTempoDeExecucao(emSegundos: boolean = false) {
   return function (
     target: any,
     propertyKey: string,
@@ -9,7 +9,15 @@ export function logarTempoDeExecucao() {
       const t1 = performance.now();
       const retorno = metodoOriginal.apply(this, args);
       const t2 = performance.now();
-      console.log(`O método ${propertyKey} demorou ${(t2 - t1) / 1000}s.`);
+      if (emSegundos) {
+        console.log(
+          `O método ${propertyKey} demorou ${(t2 - t1) / 1000} segundos.`,
+        );
+      } else {
+        console.log(
+          `O método ${propertyKey} demorou ${t2 - t1} milissegundos.`,
+        );
+      }
       return retorno;
     };
     return descriptor;
