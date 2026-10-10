@@ -1,6 +1,7 @@
+import { Imprimivel } from '../utils/imprimivel.js';
 import { Negociacao } from './negociacao.js';
 
-export class Negociacoes {
+export class Negociacoes implements Imprimivel {
   private _negociacoes: Negociacao[] = [];
 
   public adiciona(negocicao: Negociacao) {
@@ -9,5 +10,9 @@ export class Negociacoes {
 
   public lista(): readonly Negociacao[] {
     return this._negociacoes;
+  }
+
+  public paraTexto(): string {
+    return JSON.stringify(this._negociacoes, null, 2);
   }
 }

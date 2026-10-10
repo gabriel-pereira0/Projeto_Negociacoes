@@ -10,6 +10,7 @@ import { TipoMensagem } from '../enums/tipo-mensagem.js';
 import { Negociacao } from '../models/negociacao.js';
 import { Negociacoes } from '../models/negociacoes.js';
 import { NegociacoesService } from '../services/negociacoes-service.js';
+import { imprimir } from '../utils/imprimir.js';
 import { MensagemView } from '../views/mensagem-view.js';
 import { NegociacoesView } from '../views/negociacoes-view.js';
 export class NegociacaoController {
@@ -30,6 +31,7 @@ export class NegociacaoController {
             return;
         }
         this._negociacoes.adiciona(negociacao);
+        imprimir(negociacao, this._negociacoes);
         this.atualizaView();
         this.limparFormulario();
     }

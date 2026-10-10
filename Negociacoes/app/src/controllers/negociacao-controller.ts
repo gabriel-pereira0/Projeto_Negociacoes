@@ -1,12 +1,10 @@
 import { domInjector } from '../decorators/dom-injector.js';
-import { inspect } from '../decorators/inspect.js';
-import { logarTempoDeExecucao } from '../decorators/logar-tempo-de-execucao.js';
 import { DiasDaSemana } from '../enums/dias-da-semana.js';
 import { TipoMensagem } from '../enums/tipo-mensagem.js';
-import { NegociacaoDoDia } from '../interface/negociacao-do-dia.js';
 import { Negociacao } from '../models/negociacao.js';
 import { Negociacoes } from '../models/negociacoes.js';
 import { NegociacoesService } from '../services/negociacoes-service.js';
+import { imprimir } from '../utils/imprimir.js';
 import { MensagemView } from '../views/mensagem-view.js';
 import { NegociacoesView } from '../views/negociacoes-view.js';
 
@@ -40,6 +38,7 @@ export class NegociacaoController {
       return;
     }
     this._negociacoes.adiciona(negociacao);
+    imprimir(negociacao, this._negociacoes);
     this.atualizaView();
     this.limparFormulario();
   }
