@@ -6,6 +6,7 @@ import { TipoMensagem } from '../enums/tipo-mensagem.js';
 import { NegociacaoDoDia } from '../interface/negociacao-do-dia.js';
 import { Negociacao } from '../models/negociacao.js';
 import { Negociacoes } from '../models/negociacoes.js';
+import { NegociacoesService } from '../services/negociacoes-service.js';
 import { MensagemView } from '../views/mensagem-view.js';
 import { NegociacoesView } from '../views/negociacoes-view.js';
 
@@ -19,13 +20,12 @@ export class NegociacaoController {
   private _negociacoes = new Negociacoes();
   private _negociacoesView = new NegociacoesView('#negociacoesView');
   private _mensagemView = new MensagemView('#mensagemView');
+  private _negociacoesService = new NegociacoesService();
 
   constructor() {
     this._negociacoesView.update(this._negociacoes);
   }
 
-  // @inspect
-  // @logarTempoDeExecucao(true)
   public adiciona(): void {
     const negociacao = Negociacao.criaDe(
       this._inputData.value,
@@ -45,15 +45,10 @@ export class NegociacaoController {
   }
 
   public importaDados(): void {
-    fetch('http://localhost:8080/dados')
-      .then((res) => res.json())
-      .then((dados: NegociacaoDoDia[]) => {
-        return dados.map((dado) => {
-          return new Negociacao(new Date(), dado.vezes, dado.montante);
-        });
-      })
-      .then((negociacoes) => {
-        for (let negociacao of negociacoes) {
+    this._negociacoesService
+      .obterNegociacoesDoDia()
+      .then((negociacoesDeHoje) => {
+        for (let negociacao of negociacoesDeHoje) {
           this._negociacoes.adiciona(negociacao);
         }
         this._negociacoesView.update(this._negociacoes);
