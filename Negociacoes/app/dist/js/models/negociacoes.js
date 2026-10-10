@@ -1,5 +1,7 @@
 export class Negociacoes {
-    _negociacoes = [];
+    constructor() {
+        this._negociacoes = [];
+    }
     adiciona(negocicao) {
         this._negociacoes.push(negocicao);
     }

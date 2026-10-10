@@ -1,5 +1,4 @@
 export class View {
-    elemento;
     constructor(seletor) {
         const elemento = document.querySelector(seletor);
         if (!elemento) {

@@ -5,8 +5,6 @@ var __decorate = (this && this.__decorate) || function (decorators, target, key,
     return c > 3 && r && Object.defineProperty(target, key, r), r;
 };
 import { domInjector } from '../decorators/dom-injector.js';
-import { inspect } from '../decorators/inspect.js';
-import { logarTempoDeExecucao } from '../decorators/logar-tempo-de-execucao.js';
 import { DiasDaSemana } from '../enums/dias-da-semana.js';
 import { TipoMensagem } from '../enums/tipo-mensagem.js';
 import { Negociacao } from '../models/negociacao.js';
@@ -14,13 +12,10 @@ import { Negociacoes } from '../models/negociacoes.js';
 import { MensagemView } from '../views/mensagem-view.js';
 import { NegociacoesView } from '../views/negociacoes-view.js';
 export class NegociacaoController {
-    _inputData;
-    _inputQuantidade;
-    _inputValor;
-    _negociacoes = new Negociacoes();
-    _negociacoesView = new NegociacoesView('#negociacoesView');
-    _mensagemView = new MensagemView('#mensagemView');
     constructor() {
+        this._negociacoes = new Negociacoes();
+        this._negociacoesView = new NegociacoesView('#negociacoesView');
+        this._mensagemView = new MensagemView('#mensagemView');
         this._negociacoesView.update(this._negociacoes);
     }
     adiciona() {
@@ -35,6 +30,21 @@ export class NegociacaoController {
         this._negociacoes.adiciona(negociacao);
         this.atualizaView();
         this.limparFormulario();
+    }
+    importaDados() {
+        fetch('http://localhost:8080/dados')
+            .then((res) => res.json())
+            .then((dados) => {
+            return dados.map((dado) => {
+                return new Negociacao(new Date(), dado.vezes, dado.montante);
+            });
+        })
+            .then((negociacoes) => {
+            for (let negociacao of negociacoes) {
+                this._negociacoes.adiciona(negociacao);
+            }
+            this._negociacoesView.update(this._negociacoes);
+        });
     }
     diaUtil(date) {
         const dia = date.getDay();
@@ -63,7 +73,3 @@ __decorate([
 __decorate([
     domInjector('#valor')
 ], NegociacaoController.prototype, "_inputValor", void 0);
-__decorate([
-    inspect,
-    logarTempoDeExecucao(true)
-], NegociacaoController.prototype, "adiciona", null);
