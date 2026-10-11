@@ -35,29 +35,51 @@ Durante o desenvolvimento, foram trabalhados conceitos como:
 
 ## 💻 Como executar o projeto
 
-Clone o repositório:
+### 1. Clone o repositório
 
 ```bash
-git clone <URL_DO_REPOSITORIO>
+git clone https://github.com/gabriel-pereira0/Projeto_Negociacoes.git
 ```
 
-Acesse a pasta do projeto:
+### 2. Acesse a pasta da aplicação
 
 ```bash
 cd Negociacoes
 ```
 
-Instale as dependências:
+### 3. Instale as dependências da aplicação
 
 ```bash
 npm install
 ```
 
-Execute o servidor:
+### 4. Inicie a aplicação TypeScript
 
 ```bash
-npm run server
+npm start
 ```
+
+### 5. Inicie o servidor da API
+
+Abra **outro terminal** e acesse a pasta `servidor-api`:
+
+```bash
+cd Negociacoes/servidor-api
+```
+
+Instale as dependências da API:
+
+```bash
+npm install
+```
+
+Inicie o servidor:
+
+```bash
+npm start
+```
+
+**Importante:** mantenha os dois terminais abertos enquanto estiver utilizando a aplicação, pois a aplicação TypeScript e o servidor da API precisam estar em execução simultaneamente.
 
 A aplicação será disponibilizada localmente pelo servidor de desenvolvimento.
 
@@ -66,7 +88,3 @@ A aplicação será disponibilizada localmente pelo servidor de desenvolvimento.
 Este é um **projeto de prática e aprendizado**, desenvolvido durante os estudos de TypeScript.
 
 A ideia principal é colocar em prática os conceitos aprendidos e evoluir gradualmente na construção de aplicações web utilizando tipagem estática e boas práticas de desenvolvimento.
-
----
-
-Desenvolvido por **Gabriel Pereira** 🚀
